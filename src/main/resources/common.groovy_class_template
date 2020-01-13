@@ -1,0 +1,9 @@
+import com.lvsong.groovyengine.*
+
+class %s extends AbstractEngineModuleRule {
+    void run(Object condition, Object action){
+        //业务执行逻辑：可配置化
+        super.run(condition, action)
+        %s
+    }
+}

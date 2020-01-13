@@ -1,0 +1,51 @@
+// 分销商品插件过滤器
+if (condition.itemType != 'fx') {
+    return
+}
+
+// 子订单插件过滤器
+if (orderType() == 'subOrder' && queryPage() == 'cart') {
+    useToolCodes().with {
+        add('limitDiscount')
+        add('fxVipPromotion')
+        add('itemFreePostage')
+        add('subOrder')
+        add('memberPro')
+    }
+} else if (orderType() == 'subOrder') {
+   useToolCodes().with {
+        add('limitBuy')
+        add('fxCommssion')
+        add('crossBorderTax')
+        add('subOrder')
+        add('limitDiscount')
+        add('fxVipPromotion')
+        add('vpoint')
+        add('memberPro')
+    }
+}
+
+// 主订单插件过滤器
+if (orderType() == "order" && queryPage() == 'detailV2') {
+    useToolCodes().with {
+        add('shopItemMj')
+        add('shopMj')
+        add('fxCoupon')
+    }
+} else if (orderType() == "order" && queryPage() == 'cart') {
+    useToolCodes().add('shopFreePostage')
+} else if (condition.orderType == "order" && condition.queryPage == 'confirmOrder') {
+    useToolCodes().with {
+        add('shopItemMj')
+        add('shopMj')
+        add('fxCoupon')
+    }
+} else if (condition.orderType == "order" && condition.queryPage == 'usingPromotion') {
+    useToolCodes().with {
+        add('shopItemMj')
+        add('shopMj')
+        add('fxCoupon')
+    }
+} else if (orderType() == "order") {
+    useToolCodes().add('order')
+}
